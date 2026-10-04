@@ -44,19 +44,19 @@ export const siteConfig = {
     },
     navLinks: [
       {
-        text: 'Blog',
+        text: '博客',
         href: '/blog',
       },
       {
-        text: 'Notes',
+        text: '随记',
         href: '/blog/notes',
       },
       {
-        text: 'Talks',
+        text: '分享',
         href: '/blog/talks',
       },
       {
-        text: 'Projects',
+        text: '项目',
         href: '/projects',
       },
     ],
