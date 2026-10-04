@@ -11,7 +11,7 @@ export const siteConfig = {
   socialLinks: [
     {
       text: 'GitHub',
-      href: 'https://github.com/kieranwv/astro-theme-vitesse',
+      href: 'https://github.com/albertfang0926',
       icon: 'i-simple-icons-github',
       header: 'i-ri-github-line',
     },
@@ -39,7 +39,7 @@ export const siteConfig = {
   ],
   header: {
     logo: {
-      src: '/favicon.svg',
+      src: '/avatar.jpg',
       alt: 'Logo Image',
     },
     navLinks: [
