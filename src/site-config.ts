@@ -7,7 +7,7 @@ export const siteConfig = {
     src: '/hero.jpg',
     alt: 'Website Main Image',
   },
-  email: 'kieranwme@gmail.com',
+  email: 'albertfang0926@qq.com',
   socialLinks: [
     {
       text: 'GitHub',

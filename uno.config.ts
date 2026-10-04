@@ -18,6 +18,12 @@ export default defineConfig({
       'border-main': 'border-truegray-300 dark:border-truegray-600',
     },
     {
+      'text-primary': 'text-hex-0dafc6 dark:text-hex-38cddd',
+      'bg-primary': 'bg-hex-0dafc6',
+      'bg-primary-soft': 'bg-hex-0dafc6/10 dark:bg-hex-0dafc6/15',
+      'border-primary': 'border-hex-0dafc6',
+    },
+    {
       'text-title': 'text-link text-4xl font-800',
       'nav-link': 'text-link opacity-70 hover:opacity-100 transition-opacity duration-200 cursor-pointer',
       'prose-link': 'text-link text-nowrap cursor-pointer border-b-1 !border-opacity-30 hover:!border-opacity-100 border-neutral-500 hover:border-truegray-600 dark:border-neutral-500 hover:dark:border-truegray-400 transition-border-color duration-200 decoration-none',

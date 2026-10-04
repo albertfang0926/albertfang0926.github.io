@@ -1,80 +1,608 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import siteConfig from '@/site-config'
+import { getPosts } from '@/utils/posts'
+
+const allPosts = await getPosts()
+const recentPosts = allPosts.slice(0, 5)
+const socialLinks = siteConfig.socialLinks.filter((link) => link.href)
+
+const rootCount = allPosts.filter((p) => !p.id.includes('/')).length
+const notesCount = allPosts.filter((p) => p.id.startsWith('notes/')).length
+const talksCount = allPosts.filter((p) => p.id.startsWith('talks/')).length
+
+const sections = [
+  {
+    text: '博客',
+    desc: '技术长文',
+    icon: 'i-ri-article-line',
+    href: '/blog',
+    countLabel: `${rootCount} 篇`,
+    tint: '#0dafc6',
+    box: 'bg-hex-0dafc6/12 text-hex-0dafc6 dark:text-hex-3ad2e5',
+  },
+  {
+    text: '随记',
+    desc: '灵感碎片',
+    icon: 'i-ri-quill-pen-line',
+    href: '/blog/notes',
+    countLabel: `${notesCount} 篇`,
+    tint: '#f59e0b',
+    box: 'bg-hex-f59e0b/12 text-hex-e8940a dark:text-hex-fbbf24',
+  },
+  {
+    text: '分享',
+    desc: '演讲与漫谈',
+    icon: 'i-ri-mic-line',
+    href: '/blog/talks',
+    countLabel: `${talksCount} 篇`,
+    tint: '#8b5cf6',
+    box: 'bg-hex-8b5cf6/12 text-hex-8b5cf6 dark:text-hex-a78bfa',
+  },
+  {
+    text: '项目',
+    desc: '造点小东西',
+    icon: 'i-ri-code-s-slash-line',
+    href: '/projects',
+    countLabel: '看看 →',
+    tint: '#f43f5e',
+    box: 'bg-hex-f43f5e/12 text-hex-f43f5e dark:text-hex-fb7185',
+  },
+]
+
+function getPostHref(post: { data: { redirect?: string }; id: string }) {
+  return post.data.redirect || `/posts/${post.id}`
+}
 ---
 
 <BaseLayout description={siteConfig.description}>
-  <article class="prose">
-    <h1 class="text-title">Vitesse theme</h1>
-    <p>Vitesse theme for Astro, supports Vue and UnoCSS.</p>
-    <p>
-      A minimal, SEO-riendly portfolio and blog theme for Astro. It's inspired by <a
-        target="_blank"
-        href="https://antfu.me">antfu.me</a
-      >.
-    </p>
-    <p>
-      <img width="640" height="360" src="/hero.jpg" alt="Hero Image" />
-    </p>
-    <p>
-      Based on first principles thinking, and you can also see from the picture
-      <sup>👆</sup>, the goal of this theme is to
-      <b>make complex things as simple as possible</b>
-      . So, the core of this theme is the content, and the other elements are just auxiliary.
-    </p>
-    <p>Here are the features you don't need to worry about:</p>
-    <ul>
-      <li>100 / 100 Lighthouse performance</li>
-      <li>Responsive</li>
-      <li>SEO-friendly</li>
-      <li>Light / Dark Theme</li>
-      <li>Markdown support</li>
-      <li>
-        <a target="_blank" href="https://mdxjs.com/">MDX</a>
-        (components in your markdown) support
-      </li>
-      <li>
-        <a target="_blank" href="https://vuejs.org/">Vue</a>
-        SFC component support
-      </li>
-      <li>Auto generated sitemap and RSS Feed</li>
-      <li>
-        <a target="_blank" href="https://vueuse.org/">VueUse</a>
-        &
-        <a target="_blank" href="https://lodash.com/">Lodash</a>
-        support
-      </li>
-    </ul>
-    <p>
-      By the way, this theme use the <a target="_blank" href="https://unocss.dev/">UnoCSS</a> for style, it's fast.
-    </p>
-    <p>
-      Visit it
-      <a target="_blank" href="https://github.com/kieranwv/astro-theme-vitesse"> on GitHub </a>
-      to fork the repository, read the docs or one-click deploy on Netlify.
-    </p>
-    <p>
-      If you like Vitesse theme for Astro, please
-      <a target="_blank" href="https://github.com/kieranwv"> click follow </a>
-      for me.
-    </p>
-    <hr class="hr-line" />
-    <p>Find me on</p>
-    <p class="flex gap-x-4 gap-y-2 flex-wrap">
+  <section class="fade-up relative">
+    <div class="hero-backdrop" aria-hidden="true"></div>
+
+    <div class="hero-card">
+      <div class="hero-orb hero-orb--a" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb--b" aria-hidden="true"></div>
+      <i class="i-ri-sparkling-2-line sparkle sparkle--a" aria-hidden="true"></i>
+      <i class="i-ri-sparkling-line sparkle sparkle--b" aria-hidden="true"></i>
+
+      <div class="relative flex items-center gap-5">
+        <div class="avatar-ring shrink-0">
+          <img width="80" height="80" src={siteConfig.header.logo.src} alt={siteConfig.author} loading="eager" />
+        </div>
+        <div class="min-w-0">
+          <p class="font-mono text-xs font-600 uppercase text-primary tracking-[0.3em]">// Hello World</p>
+          <h1 class="mt-2 text-3xl font-800 leading-tight tracking-tight sm:text-4xl">
+            你好，我是 <span class="gradient-text">{siteConfig.author}</span>
+            <span class="wave">👋</span>
+          </h1>
+        </div>
+      </div>
+
+      <p class="relative mt-5 max-w-xl text-base leading-relaxed opacity-80 sm:text-lg">
+        一名开发者，也是生活的记录者。相信<span class="font-600 text-primary">「把复杂的事情做简单」</span
+        >，这里存放我的技术笔记、思考与日常碎片。
+      </p>
+
+      <span class="live-pill"><span class="dot-pulse"></span>持续更新中</span>
+
+      <div class="relative mt-7 flex flex-wrap items-center gap-4">
+        <a class="btn-primary" href="/blog">逛逛博客<i class="i-ri-arrow-right-line"></i></a>
+        <a class="btn-ghost" href={`mailto:${siteConfig.email}`}>写信给我</a>
+      </div>
+
+      <div class="relative mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-lg">
+        <span class="text-sm opacity-50">Find me on</span>
+        {
+          socialLinks.map((link) => (
+            <a class="social-link" aria-label={link.text} href={link.href} target="_blank" rel="noopener">
+              <i class={link.icon} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="fade-up mt-10" style="animation-delay: 0.1s">
+    <div class="mb-5 flex items-end justify-between gap-4">
+      <div>
+        <p class="font-mono text-xs font-600 uppercase text-primary tracking-[0.3em]">Explore</p>
+        <h2 class="mt-2 text-2xl font-700 tracking-tight">探索栏目</h2>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
       {
-        siteConfig.socialLinks.map((link) => (
-          <a aria-label={link.text} href={link.href} target="_blank" class="prose-link">
-            <i class:list={[link.icon]} />
-            {link.text}
+        sections.map((section) => (
+          <a class="quick-card group" href={section.href} style={`--tint: ${section.tint}`}>
+            <span class={`icon-box ${section.box}`}>
+              <i class={section.icon} />
+            </span>
+            <span class="mt-3 flex items-center gap-2 font-700">
+              {section.text}
+              <span class="font-mono text-xs font-400 opacity-55">{section.countLabel}</span>
+            </span>
+            <span class="mt-0.5 block text-xs opacity-55">{section.desc}</span>
           </a>
         ))
       }
-    </p>
-    <p>
-      If you have any questions, please email me at
-      <a prose-link aria-label={siteConfig.email} href={`mailto:${siteConfig.email}`}>
-        {siteConfig.email}
-      </a>.
-    </p>
-  </article>
+    </div>
+  </section>
+
+  <section class="fade-up mt-12 sm:mt-16" style="animation-delay: 0.18s">
+    <div class="mb-5 flex items-end justify-between gap-4">
+      <div>
+        <p class="font-mono text-xs font-600 uppercase text-primary tracking-[0.3em]">Recent Posts</p>
+        <h2 class="mt-2 text-2xl font-700 tracking-tight">最新文章</h2>
+      </div>
+      <a nav-link class="ws-nowrap text-sm" href="/blog">全部文章 →</a>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
+      {
+        recentPosts.map((post, index) => (
+          <a
+            class:list={['post-card group', index === 0 && 'post-card--featured sm:col-span-2']}
+            href={getPostHref(post)}
+            target={post.data.redirect ? '_blank' : '_self'}
+            rel={post.data.redirect ? 'noopener' : undefined}
+          >
+            <div class="flex items-center gap-3">
+              <time class="font-mono text-xs opacity-55" datetime={new Date(post.data.date).toISOString()}>
+                {post.data.date}
+              </time>
+              {index === 0 && <span class="new-badge">NEW</span>}
+              {post.data.tag && <span class="post-tag">{post.data.tag}</span>}
+            </div>
+            <h3 class:list={['post-title mt-3 font-700', index === 0 ? 'text-xl sm:text-2xl' : 'text-lg']}>
+              {post.data.title}
+              {post.data.draft && <i class="i-ri-draft-line ml-1 align-middle text-base" />}
+              {post.data.redirect && <i class="i-ri-external-link-line ml-1 align-middle text-base" />}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed opacity-55 line-clamp-2">{post.data.description}</p>
+            <span class="card-cta mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-primary">
+              阅读全文
+              <i class="i-ri-arrow-right-line" />
+            </span>
+          </a>
+        ))
+      }
+
+      <a class="mini-card" href="/blog">全部文章<i class="i-ri-arrow-right-line"></i></a>
+      <a class="mini-card" href="/rss.xml" target="_blank">RSS 订阅<i class="i-ri-rss-line"></i></a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero-backdrop {
+    pointer-events: none;
+    position: absolute;
+    inset: -1.5rem;
+    border-radius: 2rem;
+    background: radial-gradient(60% 60% at 50% 30%, rgb(13 175 198 / 0.14), transparent 70%);
+  }
+
+  .hero-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    border: 1px solid rgb(13 175 198 / 0.16);
+    background: #fff;
+    padding: 1.75rem;
+    box-shadow: 0 24px 60px -32px rgb(13 175 198 / 0.3);
+  }
+  @media (min-width: 640px) {
+    .hero-card {
+      padding: 2.5rem;
+    }
+  }
+  :global(.dark) .hero-card {
+    border-color: rgb(13 175 198 / 0.22);
+    background: #161b22;
+  }
+
+  .hero-orb {
+    pointer-events: none;
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(56px);
+  }
+  .hero-orb--a {
+    width: 17rem;
+    height: 17rem;
+    top: -7rem;
+    right: -5rem;
+    background: rgb(13 175 198 / 0.22);
+  }
+  .hero-orb--b {
+    width: 12rem;
+    height: 12rem;
+    bottom: -6rem;
+    left: -4rem;
+    background: rgb(139 92 246 / 0.14);
+  }
+
+  .sparkle {
+    pointer-events: none;
+    position: absolute;
+    color: #0dafc6;
+    opacity: 0.45;
+    animation: float 5s ease-in-out infinite;
+  }
+  .sparkle--a {
+    top: 6.5rem;
+    right: 9rem;
+    font-size: 1.25rem;
+  }
+  .sparkle--b {
+    bottom: 7rem;
+    left: 42%;
+    font-size: 0.95rem;
+    color: #8b5cf6;
+    animation-delay: 1.6s;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-7px) rotate(12deg);
+    }
+  }
+
+  .live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.25rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(13 175 198 / 0.25);
+    background: rgb(13 175 198 / 0.08);
+    padding: 0.3rem 0.8rem;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: #0c94a8;
+  }
+  @media (min-width: 640px) {
+    .live-pill {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1;
+      margin-top: 0;
+    }
+  }
+  :global(.dark) .live-pill {
+    border-color: rgb(13 175 198 / 0.3);
+    background: rgb(13 175 198 / 0.12);
+    color: #4fd0e3;
+  }
+
+  .dot-pulse {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: #0dafc6;
+    animation: dot-pulse 2.4s ease-out infinite;
+  }
+  @keyframes dot-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgb(13 175 198 / 0.45);
+    }
+    70%,
+    100% {
+      box-shadow: 0 0 0 8px rgb(13 175 198 / 0);
+    }
+  }
+
+  .avatar-ring {
+    position: relative;
+    border-radius: 9999px;
+    padding: 3px;
+    overflow: hidden;
+  }
+  .avatar-ring::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, #0dafc6, #7ce4f2, #a78bfa, #f472b6, #0dafc6);
+    animation: ring-spin 6s linear infinite;
+  }
+  .avatar-ring img {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 3px solid #fff;
+  }
+  :global(.dark) .avatar-ring img {
+    border-color: #161b22;
+  }
+  @keyframes ring-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave 2.8s ease-in-out infinite;
+  }
+  @keyframes wave {
+    0%,
+    60%,
+    100% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(14deg);
+    }
+    20% {
+      transform: rotate(-8deg);
+    }
+    30% {
+      transform: rotate(14deg);
+    }
+    40% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+  }
+
+  .gradient-text {
+    background-image: linear-gradient(115deg, #0dafc6 30%, #5cd8ea 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  :global(.dark) .gradient-text {
+    background-image: linear-gradient(115deg, #2fc9de 30%, #93ecf9 90%);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.3rem;
+    border-radius: 9999px;
+    background: #0dafc6;
+    color: #05323a;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 10px 26px -10px rgb(13 175 198 / 0.65);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+  }
+  .btn-primary:hover {
+    background: #0b9db1;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -10px rgb(13 175 198 / 0.7);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.3rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(13 175 198 / 0.4);
+    color: #0c94a8;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+  .btn-ghost:hover {
+    border-color: #0dafc6;
+    background: rgb(13 175 198 / 0.08);
+    color: #0dafc6;
+  }
+  :global(.dark) .btn-ghost {
+    border-color: rgb(13 175 198 / 0.35);
+    color: #4fd0e3;
+  }
+  :global(.dark) .btn-ghost:hover {
+    border-color: rgb(13 175 198 / 0.6);
+    background: rgb(13 175 198 / 0.12);
+    color: #6fdcec;
+  }
+
+  .social-link {
+    display: inline-flex;
+    color: inherit;
+    opacity: 0.6;
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+  .social-link:hover {
+    opacity: 1;
+    color: #0dafc6;
+    transform: translateY(-2px);
+  }
+
+  .quick-card {
+    display: block;
+    border-radius: 1.25rem;
+    border: 1px solid rgb(0 0 0 / 0.06);
+    background: #fff;
+    padding: 1.15rem 1.25rem;
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+  .quick-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--tint);
+    box-shadow: 0 16px 36px -22px color-mix(in srgb, var(--tint) 55%, transparent);
+  }
+  :global(.dark) .quick-card {
+    border-color: rgb(255 255 255 / 0.08);
+    background: #161b22;
+  }
+
+  .icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.9rem;
+    font-size: 1.3rem;
+  }
+
+  .post-card {
+    display: block;
+    border-radius: 1.25rem;
+    border: 1px solid rgb(0 0 0 / 0.06);
+    background: #fff;
+    padding: 1.4rem 1.5rem;
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+  .post-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(13 175 198 / 0.5);
+    box-shadow: 0 18px 40px -22px rgb(13 175 198 / 0.4);
+  }
+  :global(.dark) .post-card {
+    border-color: rgb(255 255 255 / 0.08);
+    background: #161b22;
+  }
+
+  .post-card--featured {
+    background: linear-gradient(135deg, rgb(13 175 198 / 0.09), transparent 55%) #fff;
+  }
+  :global(.dark) .post-card--featured {
+    background: linear-gradient(135deg, rgb(13 175 198 / 0.12), transparent 55%) #161b22;
+  }
+
+  .post-title {
+    transition: color 0.2s ease;
+  }
+  .post-card:hover .post-title {
+    color: #0dafc6;
+  }
+  :global(.dark) .post-card:hover .post-title {
+    color: #38cddd;
+  }
+
+  .card-cta {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+  .post-card:hover .card-cta {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .new-badge {
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+    background: #0dafc6;
+    color: #05323a;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .post-tag {
+    padding: 0.1rem 0.6rem;
+    border-radius: 9999px;
+    border: 1px solid rgb(13 175 198 / 0.3);
+    background: rgb(13 175 198 / 0.08);
+    color: #0c94a8;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+  :global(.dark) .post-tag {
+    border-color: rgb(13 175 198 / 0.3);
+    background: rgb(13 175 198 / 0.12);
+    color: #4fd0e3;
+  }
+
+  .mini-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 1.25rem;
+    border: 1.5px dashed rgb(13 175 198 / 0.35);
+    color: #0c94a8;
+    padding: 1.15rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      transform 0.25s ease,
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease;
+  }
+  .mini-card:hover {
+    transform: translateY(-3px);
+    border-style: solid;
+    border-color: #0dafc6;
+    background: rgb(13 175 198 / 0.06);
+  }
+  :global(.dark) .mini-card {
+    border-color: rgb(13 175 198 / 0.35);
+    color: #4fd0e3;
+  }
+  :global(.dark) .mini-card:hover {
+    border-color: rgb(13 175 198 / 0.6);
+    background: rgb(13 175 198 / 0.1);
+    color: #6fdcec;
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fade-up 0.6s ease forwards;
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up,
+    .avatar-ring::before,
+    .wave,
+    .sparkle,
+    .dot-pulse {
+      animation: none;
+    }
+    .fade-up {
+      opacity: 1;
+    }
+  }
+</style>
