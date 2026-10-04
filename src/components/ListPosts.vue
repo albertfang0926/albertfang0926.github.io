@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 interface Post {
   id: string
-  slug: string
   body: string
   data: Record<string, any>
   collection: string
@@ -21,7 +20,7 @@ function getDate(date: string) {
 function getHref(post: Post) {
   if (post.data.redirect)
     return post.data.redirect
-  return `/blog/posts/${post.slug}`
+  return `/blog/posts/${post.id}`
 }
 
 function getTarget(post: Post) {
