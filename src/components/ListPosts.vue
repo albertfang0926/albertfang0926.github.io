@@ -20,7 +20,7 @@ function getDate(date: string) {
 function getHref(post: Post) {
   if (post.data.redirect)
     return post.data.redirect
-  return `/blog/posts/${post.id}`
+  return `/posts/${post.id}`
 }
 
 function getTarget(post: Post) {

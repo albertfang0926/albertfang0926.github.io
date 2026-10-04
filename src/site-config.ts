@@ -4,7 +4,7 @@ export const siteConfig = {
   subtitle: 'Vitesse theme for Astro, supports Vue and UnoCSS.',
   description: 'A Minimal, SEO-friendly portfolio and blog theme for Astro.',
   image: {
-    src: '/blog/hero.jpg',
+    src: '/hero.jpg',
     alt: 'Website Main Image',
   },
   email: 'kieranwme@gmail.com',
@@ -39,25 +39,25 @@ export const siteConfig = {
   ],
   header: {
     logo: {
-      src: '/blog/favicon.svg',
+      src: '/favicon.svg',
       alt: 'Logo Image',
     },
     navLinks: [
       {
         text: 'Blog',
-        href: '/blog/blog',
+        href: '/blog',
       },
       {
         text: 'Notes',
-        href: '/blog/blog/notes',
+        href: '/blog/notes',
       },
       {
         text: 'Talks',
-        href: '/blog/blog/talks',
+        href: '/blog/talks',
       },
       {
         text: 'Projects',
-        href: '/blog/projects',
+        href: '/projects',
       },
     ],
   },
@@ -65,15 +65,15 @@ export const siteConfig = {
     blogLinks: [
       {
         text: 'Blog',
-        href: '/blog/blog',
+        href: '/blog',
       },
       {
         text: 'Notes',
-        href: '/blog/blog/notes',
+        href: '/blog/notes',
       },
       {
         text: 'Talks',
-        href: '/blog/blog/talks',
+        href: '/blog/talks',
       },
     ],
   },
