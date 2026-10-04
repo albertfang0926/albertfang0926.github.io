@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import siteConfig from '@/site-config'
-import { getPosts } from '@/utils/posts'
+import { getPosts, getPostCover } from '@/utils/posts'
 
 const allPosts = await getPosts()
 const recentPosts = allPosts.slice(0, 5)
@@ -140,32 +140,48 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
 
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-5">
       {
-        recentPosts.map((post, index) => (
-          <a
-            class:list={['post-card group', index === 0 && 'post-card--featured sm:col-span-2']}
-            href={getPostHref(post)}
-            target={post.data.redirect ? '_blank' : '_self'}
-            rel={post.data.redirect ? 'noopener' : undefined}
-          >
-            <div class="flex items-center gap-3">
-              <time class="font-mono text-xs opacity-55" datetime={new Date(post.data.date).toISOString()}>
-                {post.data.date}
-              </time>
-              {index === 0 && <span class="new-badge">NEW</span>}
-              {post.data.tag && <span class="post-tag">{post.data.tag}</span>}
-            </div>
-            <h3 class:list={['post-title mt-3 font-700', index === 0 ? 'text-xl sm:text-2xl' : 'text-lg']}>
-              {post.data.title}
-              {post.data.draft && <i class="i-ri-draft-line ml-1 align-middle text-base" />}
-              {post.data.redirect && <i class="i-ri-external-link-line ml-1 align-middle text-base" />}
-            </h3>
-            <p class="mt-2 text-sm leading-relaxed opacity-55 line-clamp-2">{post.data.description}</p>
-            <span class="card-cta mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-primary">
-              阅读全文
-              <i class="i-ri-arrow-right-line" />
-            </span>
-          </a>
-        ))
+        recentPosts.map((post, index) => {
+          const cover = getPostCover(post)
+          return (
+            <a
+              class:list={['post-card group', index === 0 && 'post-card--featured sm:col-span-2']}
+              href={getPostHref(post)}
+              target={post.data.redirect ? '_blank' : '_self'}
+              rel={post.data.redirect ? 'noopener' : undefined}
+            >
+              <div class="flex gap-4 sm:gap-5">
+                <div class="post-cover">
+                  <img
+                    src={cover.src}
+                    alt={cover.alt}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    width="120"
+                    height="120"
+                  />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center gap-3">
+                    <time class="font-mono text-xs opacity-55" datetime={new Date(post.data.date).toISOString()}>
+                      {post.data.date}
+                    </time>
+                    {index === 0 && <span class="new-badge">NEW</span>}
+                    {post.data.tag && <span class="post-tag">{post.data.tag}</span>}
+                  </div>
+                  <h3 class:list={['post-title mt-3 font-700', index === 0 ? 'text-xl sm:text-2xl' : 'text-lg']}>
+                    {post.data.title}
+                    {post.data.draft && <i class="i-ri-draft-line ml-1 align-middle text-base" />}
+                    {post.data.redirect && <i class="i-ri-external-link-line ml-1 align-middle text-base" />}
+                  </h3>
+                  <p class="mt-2 text-sm leading-relaxed opacity-55 line-clamp-2">{post.data.description}</p>
+                  <span class="card-cta mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-primary">
+                    阅读全文
+                    <i class="i-ri-arrow-right-line" />
+                  </span>
+                </div>
+              </div>
+            </a>
+          )
+        })
       }
 
       <a class="mini-card" href="/blog">全部文章<i class="i-ri-arrow-right-line"></i></a>
@@ -494,6 +510,40 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
   }
   :global(.dark) .post-card--featured {
     background: linear-gradient(135deg, rgb(13 175 198 / 0.12), transparent 55%) #161b22;
+  }
+
+  .post-cover {
+    flex-shrink: 0;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgb(0 0 0 / 0.06);
+    background: #f2fbfd;
+  }
+  :global(.dark) .post-cover {
+    border-color: rgb(255 255 255 / 0.08);
+    background: #1c232e;
+  }
+  .post-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+  .post-card:hover .post-cover img {
+    transform: scale(1.06);
+  }
+  @media (min-width: 640px) {
+    .post-cover {
+      width: 7.5rem;
+      height: 7.5rem;
+    }
+    .post-card--featured .post-cover {
+      width: 10rem;
+      height: 10rem;
+    }
   }
 
   .post-title {

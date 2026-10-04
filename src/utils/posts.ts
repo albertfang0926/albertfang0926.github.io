@@ -10,3 +10,18 @@ export async function getPosts(path?: string, collection: PostKey = 'blog') {
     return (import.meta.env.PROD ? post.data.draft !== true : true) && (path ? post.id.includes(path) : true)
   })).sort(sortPostsByDate)
 }
+
+const defaultCover = '/default-cover.svg'
+
+export function getPostCover(post: CollectionPosts) {
+  if (post.data.image?.src) {
+    return { src: post.data.image.src, alt: post.data.image.alt || post.data.title }
+  }
+
+  const body = post.body ?? ''
+  const markdownImage = body.match(/!\[[^\]]*\]\(\s*<?([^)\s>]+)>?(?:\s+["'][^"']*["'])?\s*\)/)
+  const htmlImage = body.match(/<img[^>]*\ssrc=["']([^"']+)["']/i)
+  const src = markdownImage?.[1] ?? htmlImage?.[1]
+
+  return { src: src ?? defaultCover, alt: post.data.title }
+}
