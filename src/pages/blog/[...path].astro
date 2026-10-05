@@ -2,7 +2,14 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import ListPosts from '@/components/ListPosts.vue'
 import siteConfig from '@/site-config'
+import type { PostKey } from '@/types'
 import { getPosts } from '@/utils/posts'
+
+const pathCollections: Record<string, PostKey> = {
+  blogs: 'blog',
+  notes: 'notes',
+  talks: 'talks',
+}
 
 export async function getStaticPaths() {
   const paths = siteConfig.page.blogLinks.map((nav) => {
@@ -18,7 +25,7 @@ export async function getStaticPaths() {
 
 const { path } = Astro.params
 
-const posts = await getPosts(path)
+const posts = await getPosts(undefined, pathCollections[path ?? ''] ?? 'blog')
 
 function activeLink(pathname: string) {
   return Astro.url.pathname.replace(/\/+/g, '/').replace(/\/$/, '') === pathname

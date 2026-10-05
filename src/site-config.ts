@@ -45,7 +45,7 @@ export const siteConfig = {
     navLinks: [
       {
         text: '博客',
-        href: '/blog',
+        href: '/blog/blogs',
       },
       {
         text: '随记',
@@ -64,15 +64,15 @@ export const siteConfig = {
   page: {
     blogLinks: [
       {
-        text: 'Blog',
-        href: '/blog',
+        text: '博客',
+        href: '/blog/blogs',
       },
       {
-        text: 'Notes',
+        text: '随记',
         href: '/blog/notes',
       },
       {
-        text: 'Talks',
+        text: '分享',
         href: '/blog/talks',
       },
     ],

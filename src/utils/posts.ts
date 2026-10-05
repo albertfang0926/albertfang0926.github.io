@@ -11,6 +11,13 @@ export async function getPosts(path?: string, collection: PostKey = 'blog') {
   })).sort(sortPostsByDate)
 }
 
+export async function getAllPosts(path?: string) {
+  const postsByCollection = await Promise.all(
+    (['blog', 'notes', 'talks'] as PostKey[]).map(collection => getPosts(path, collection)),
+  )
+  return postsByCollection.flat().sort(sortPostsByDate)
+}
+
 const defaultCover = '/default-cover.svg'
 
 export function getPostCover(post: CollectionPosts) {

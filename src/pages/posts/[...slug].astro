@@ -2,10 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { render } from 'astro:content'
 import { type CollectionPosts } from '@/types'
-import { getPosts } from '@/utils/posts'
+import { getAllPosts } from '@/utils/posts'
 
 export async function getStaticPaths() {
-  const posts = await getPosts()
+  const posts = await getAllPosts()
   return posts.map((post) => {
     return {
       params: { slug: post.id },
