@@ -111,6 +111,13 @@
   margin-bottom: 0.5em;
   line-height: 1.5;
 }
+/* 暗色模式下标题用主色调，与 uno.config.ts 中 text-primary 的暗色值保持一致 */
+html.dark .prose h1,
+html.dark .prose h2,
+html.dark .prose h3,
+html.dark .prose h4 {
+  color: #38cddd;
+}
 .prose figure figcaption {
   color: #6b7280;
   font-size: 0.875em;
@@ -129,6 +136,9 @@
 }
 .prose a code {
   color: #111827;
+}
+html.dark .prose a code {
+  color: inherit;
 }
 .prose pre {
   color: #e5e7eb;
