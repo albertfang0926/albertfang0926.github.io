@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06",
+  "title": "Design System: AlbertFang's Blog（中文 BBS 站）",
+  "extensions": {
+    "colorMeta": {
+      "ground": { "role": "neutral", "displayName": "终端地（冷纸白）", "canonical": "#f3f2ec", "tonalRamp": ["#202226", "#34363b", "#4b4d52", "#64666b", "#808287", "#9fa1a5", "#c4c5c8", "#f3f2ec"] },
+      "ink": { "role": "neutral", "displayName": "蓝黑墨", "canonical": "#1c2438", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#c9d1e4"] },
+      "ink-soft": { "role": "neutral", "displayName": "次墨（站长行/提要/状态栏）", "canonical": "rgb(28 36 56 / 0.72)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#c9d1e4"] },
+      "ink-dim": { "role": "neutral", "displayName": "淡墨（元数据最淡档，已按主题调对比）", "canonical": "rgb(28 36 56 / 0.68)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#c9d1e4"] },
+      "line": { "role": "neutral", "displayName": "框线（区块/行分隔）", "canonical": "rgb(28 36 56 / 0.32)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#c9d1e4"] },
+      "line-strong": { "role": "neutral", "displayName": "强框线（通栏线/双线/头像框）", "canonical": "rgb(28 36 56 / 0.55)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#c9d1e4"] },
+      "accent": { "role": "primary", "displayName": "终端青·信号", "canonical": "#0a6f68", "tonalRamp": ["#03211f", "#063e3a", "#0a6f68", "#12968c", "#31b8ae", "#52d9cf", "#8ae7e0", "#c9f4f0"] },
+      "accent-2": { "role": "secondary", "displayName": "终端琥珀·标记", "canonical": "#8f5a00", "tonalRamp": ["#2a1a00", "#5c3a00", "#8f5a00", "#b8770d", "#d3932f", "#f0b45c", "#f6cd8f", "#fce4c4"] },
+      "cursor-tint": { "role": "primary", "displayName": "光标条 tint（浅色；深色 = accent 反白）", "canonical": "rgb(10 111 104 / 0.16)", "tonalRamp": ["#03211f", "#063e3a", "#0a6f68", "#12968c", "#31b8ae", "#52d9cf", "#8ae7e0", "#c9f4f0"] },
+      "dark-ground": { "role": "neutral", "displayName": "ANSI 藏青地", "canonical": "#101830", "tonalRamp": ["#05070f", "#101830", "#1b2547", "#27335d", "#354374", "#455489", "#5a6a9e", "#7787b4"] },
+      "dark-ink": { "role": "neutral", "displayName": "亮白字", "canonical": "#dfe6f3", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#dfe6f3"] },
+      "dark-ink-soft": { "role": "neutral", "displayName": "夜次墨", "canonical": "rgb(223 230 243 / 0.72)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#dfe6f3"] },
+      "dark-ink-dim": { "role": "neutral", "displayName": "夜淡墨（对比已单独调低透明度档）", "canonical": "rgb(223 230 243 / 0.62)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#dfe6f3"] },
+      "dark-line": { "role": "neutral", "displayName": "夜框线", "canonical": "rgb(223 230 243 / 0.26)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#dfe6f3"] },
+      "dark-line-strong": { "role": "neutral", "displayName": "夜强框线", "canonical": "rgb(223 230 243 / 0.5)", "tonalRamp": ["#0b0e1a", "#1c2438", "#2f3a54", "#46526f", "#5f6d8c", "#7a88a6", "#9aa5c0", "#dfe6f3"] },
+      "dark-accent": { "role": "primary", "displayName": "终端青·信号（夜）", "canonical": "#52d9cf", "tonalRamp": ["#03211f", "#063e3a", "#0a6f68", "#12968c", "#31b8ae", "#52d9cf", "#8ae7e0", "#c9f4f0"] },
+      "dark-accent-2": { "role": "secondary", "displayName": "终端琥珀·标记（夜）", "canonical": "#f0b45c", "tonalRamp": ["#2a1a00", "#5c3a00", "#8f5a00", "#b8770d", "#d3932f", "#f0b45c", "#f6cd8f", "#fce4c4"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "进站牌站名", "purpose": "站名专用，一页仅一次；clamp(1.7rem, 5vw, 2.5rem) / 700 / lh 1.25。" },
+      "headline": { "displayName": "头条标题", "purpose": "「最新张贴」首条标题；clamp(1.35rem, 3.6vw, 1.8rem) / 700 / lh 1.45。" },
+      "body": { "displayName": "正文基准", "purpose": "全站正文 0.9375rem / lh 1.75；提要同号 lh 1.85、max-width 42em。" },
+      "ui": { "displayName": "联络/操作行", "purpose": "0.875rem 方括号链接与 [阅读全文]（后者 700）。" },
+      "legend": { "displayName": "框题 Legend", "purpose": "fieldset 嵌线标题：0.875rem / 700 / ls 0.1em / 青色。" },
+      "label": { "displayName": "元数据 Label", "purpose": "0.8125rem 日期/篇数/序号/读时，tabular-nums，淡墨。" }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "系统唯一缓动：光标条、▸ 浮现、版面名变色、逐行点亮共用。" },
+      { "name": "light-up", "value": "0.55s cubic-bezier(0.16, 1, 0.3, 1) both；opacity 0→1 + translateY(4px)→0；行延迟 0.05s 起 +0.06s 递进（0.05–0.29s）", "purpose": "唯一入口动效：最新张贴与版面导航的行逐行点亮；单一时间线，标题与进站牌不参与；包在 prefers-reduced-motion: no-preference 内，默认可见。" },
+      { "name": "cursor-bar", "value": "background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1)；▸ opacity 0→1 同长", "purpose": "签名交互：文章行悬停/键盘聚焦时整行填充（深色 accent 反白 + 地色字，浅色 0.16 青 tint + 墨字），行首 ▸ 浮现。" },
+      { "name": "ink-shift", "value": "color 0.16s cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "版面导航版面名悬停/聚焦变青；系统中唯一的颜色过渡。" }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "进站地面板 Station Panel",
+      "kind": "card",
+      "refersTo": "station",
+      "description": "整个进站画面印在这层自绘地面上：ground 底 + 1px 框线 + padding 1.1rem 1.4rem 1.3rem，零圆角零阴影。深色版：地 #101830、线 rgb(223 230 243 / 0.26)、字 #dfe6f3；::selection 青/地反转，:focus-visible 2px 青环。",
+      "html": "<div class=\"ds-station-panel\"><p class=\"ds-station-demo\">AlbertFang's Blog —— 纯静态小站，欢迎进站。</p></div>",
+      "css": ".ds-station-panel { background: #f3f2ec; color: #1c2438; border: 1px solid rgb(28 36 56 / 0.32); padding: 1.1rem 1.4rem 1.3rem; font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; font-size: 0.9375rem; line-height: 1.75; } .ds-station-panel ::selection { background: #0a6f68; color: #f3f2ec; } .ds-station-demo { margin: 0; }"
+    },
+    {
+      "name": "系统行 Sysline",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "进站画面第一行：站名 700 +【技术 · 生活】次墨，右侧真实统计（文章 N 篇 · 站龄第 N 天 · 最近更新日期）淡墨 tabular-nums，1px 强框线收底。深色版线 rgb(223 230 243 / 0.5)。",
+      "html": "<div class=\"ds-sysline\"><span class=\"ds-sys-title\">AlbertFang's Blog <span class=\"ds-sys-tag\">【技术 · 生活】</span></span><span class=\"ds-sys-stat\">文章 3 篇 · 站龄第 277 天 · 最近更新 2026-10-05</span></div>",
+      "css": ".ds-sysline { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; padding-bottom: 0.55rem; border-bottom: 1px solid rgb(28 36 56 / 0.55); font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; font-size: 0.8125rem; color: #1c2438; } .ds-sys-title { font-weight: 700; } .ds-sys-tag { color: rgb(28 36 56 / 0.72); font-weight: 400; } .ds-sys-stat { color: rgb(28 36 56 / 0.68); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "进站牌 Gate",
+      "kind": "custom",
+      "refersTo": "gate",
+      "description": "3px 双线 fieldset，legend「进站」青色嵌线（0.875rem/700/ls 0.1em）；内含站名 Display 号与联络行。深色版：双线 rgb(223 230 243 / 0.5)、字 #dfe6f3、legend #52d9cf。",
+      "html": "<fieldset class=\"ds-gate\"><legend class=\"ds-gate-legend\">进站</legend><h1 class=\"ds-gate-name\">AlbertFang's Blog</h1><p class=\"ds-gate-contact\"><a class=\"ds-gate-link\" href=\"#\">[GitHub]</a><a class=\"ds-gate-link\" href=\"#\">[RSS 订阅]</a><a class=\"ds-gate-link\" href=\"#\">[写信给我]</a></p></fieldset>",
+      "css": ".ds-gate { margin: 0; padding: 0.4rem 1.4rem 1.2rem; border: 3px double rgb(28 36 56 / 0.55); background: #f3f2ec; color: #1c2438; font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; } .ds-gate-legend { padding: 0 0.6em; font-weight: 700; font-size: 0.875rem; letter-spacing: 0.1em; color: #0a6f68; } .ds-gate-name { margin: 0; padding-top: 0.6rem; font-size: clamp(1.7rem, 5vw, 2.5rem); font-weight: 700; letter-spacing: 0.01em; line-height: 1.25; } .ds-gate-contact { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 1rem 0 0; font-size: 0.875rem; } .ds-gate-link { color: #0a6f68; text-decoration: none; } .ds-gate-link:hover, .ds-gate-link:focus-visible { text-decoration: underline; text-underline-offset: 3px; } .ds-gate-link:focus-visible { outline: 2px solid #0a6f68; outline-offset: 2px; }"
+    },
+    {
+      "name": "BBS 光标条行 Cursor Row（签名组件）",
+      "kind": "custom",
+      "refersTo": "cursor-row-hover",
+      "description": "文章行：序号/标题/日期/meta 在 ch 网格上对齐，行间 1px 分隔；悬停/键盘聚焦时整行填充——浅色 0.16 青 tint + 墨字，深色主题为 accent 整行反白（底 #52d9cf、字 #101830），行首 ▸ 同步浮现。",
+      "html": "<ol class=\"ds-post-list\"><li class=\"ds-post-row\"><a class=\"ds-cursor-row\" href=\"#\"><span class=\"ds-row-idx\">02</span><span class=\"ds-row-title\">为什么焦虑？</span><time class=\"ds-row-date\">2026-10-05</time><span class=\"ds-row-meta\">分享 · 读时 6分钟</span></a></li><li class=\"ds-post-row\"><a class=\"ds-cursor-row\" href=\"#\"><span class=\"ds-row-idx\">03</span><span class=\"ds-row-title\">今天是个好日子 <span class=\"ds-row-mark\">[草稿]</span></span><time class=\"ds-row-date\">2026-01-03</time><span class=\"ds-row-meta\">博客 · 读时 4分钟</span></a></li></ol>",
+      "css": ".ds-post-list { margin: 0; padding: 0; list-style: none; font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; color: #1c2438; } .ds-post-row + .ds-post-row { border-top: 1px solid rgb(28 36 56 / 0.32); } .ds-cursor-row { position: relative; display: grid; grid-template-columns: 2.5ch minmax(0, 1fr) 10ch minmax(0, 12ch); align-items: baseline; gap: 0 1.2ch; padding: 0.55rem 0.5rem 0.55rem 1.35rem; color: inherit; text-decoration: none; transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1); } .ds-cursor-row::before { content: '▸'; position: absolute; left: 0.2rem; top: 0.55rem; color: #0a6f68; opacity: 0; transition: opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1); } .ds-cursor-row:hover, .ds-cursor-row:focus-visible { background: rgb(10 111 104 / 0.16); color: #1c2438; } .ds-cursor-row:hover::before, .ds-cursor-row:focus-visible::before { color: #1c2438; opacity: 1; } .ds-cursor-row:focus-visible { outline: 2px solid #0a6f68; outline-offset: 2px; } .ds-row-idx, .ds-row-date, .ds-row-meta { color: rgb(28 36 56 / 0.68); font-size: 0.8125rem; } .ds-row-date { font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-row-meta { text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-row-title { font-weight: 700; overflow-wrap: anywhere; } .ds-row-mark { margin-left: 0.4em; font-size: 0.78em; font-weight: 400; color: #8f5a00; white-space: nowrap; }"
+    },
+    {
+      "name": "方括号链接 Bracket Link",
+      "kind": "custom",
+      "refersTo": "menu-link",
+      "description": "青色文字、无下划线静置——括号即形状；hover/focus 出下划线（offset 3px）。[阅读全文] 为 700 加重变体。深色版 #52d9cf。",
+      "html": "<p class=\"ds-links\"><a class=\"ds-bracket-link\" href=\"#\">[GitHub]</a><a class=\"ds-bracket-link\" href=\"#\">[RSS 订阅]</a><a class=\"ds-bracket-link ds-bracket-link-strong\" href=\"#\">[阅读全文]</a></p>",
+      "css": ".ds-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 0; font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; font-size: 0.875rem; } .ds-bracket-link { color: #0a6f68; text-decoration: none; } .ds-bracket-link:hover, .ds-bracket-link:focus-visible { text-decoration: underline; text-underline-offset: 3px; } .ds-bracket-link:focus-visible { outline: 2px solid #0a6f68; outline-offset: 2px; } .ds-bracket-link-strong { font-weight: 700; }"
+    },
+    {
+      "name": "琥珀标记 Mark",
+      "kind": "chip",
+      "refersTo": "mark",
+      "description": "[草稿]/[外链] 状态标记：琥珀色 0.78em/400，挂在 700 标题之后。这是琥珀在全站的唯一用途。深色版 #f0b45c。",
+      "html": "<p class=\"ds-mark-demo\">今天是个好日子 <span class=\"ds-mark\">[草稿]</span> <span class=\"ds-mark\">[外链]</span></p>",
+      "css": ".ds-mark-demo { margin: 0; font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; font-size: 0.9375rem; font-weight: 700; color: #1c2438; } .ds-mark { margin-left: 0.4em; font-size: 0.78em; font-weight: 400; color: #8f5a00; white-space: nowrap; }"
+    },
+    {
+      "name": "版面导航 Board Item",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "1px 实线框内四行版面菜单：版面名 700 悬停/聚焦变青（0.16s），右侧篇数淡墨 tabular-nums（无计数显示「看看」），下行节奏注记淡墨；空版诚实标注「虚位以待」。深色版：框线 rgb(223 230 243 / 0.26)、hover #52d9cf。",
+      "html": "<nav class=\"ds-board\" aria-label=\"版面导航\"><ul class=\"ds-board-list\"><li class=\"ds-board-row\"><a class=\"ds-board-item\" href=\"#\"><span class=\"ds-board-line\"><span class=\"ds-board-name\">博客</span><span class=\"ds-board-count\">1 篇</span></span><span class=\"ds-board-desc\">技术成文</span></a></li><li class=\"ds-board-row\"><a class=\"ds-board-item\" href=\"#\"><span class=\"ds-board-line\"><span class=\"ds-board-name\">随记</span><span class=\"ds-board-count\">0 篇</span></span><span class=\"ds-board-desc\">短碎片 · 虚位以待</span></a></li></ul></nav>",
+      "css": ".ds-board { font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; color: #1c2438; } .ds-board-list { margin: 0; padding: 0.2rem 1.2rem 1rem; list-style: none; border: 1px solid rgb(28 36 56 / 0.32); } .ds-board-row + .ds-board-row { border-top: 1px solid rgb(28 36 56 / 0.32); } .ds-board-item { display: block; padding: 0.6rem 0.3rem; text-decoration: none; color: inherit; } .ds-board-item:focus-visible { outline: 2px solid #0a6f68; outline-offset: 2px; } .ds-board-line { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; } .ds-board-name { font-weight: 700; transition: color 0.16s cubic-bezier(0.16, 1, 0.3, 1); } .ds-board-item:hover .ds-board-name, .ds-board-item:focus-visible .ds-board-name { color: #0a6f68; } .ds-board-count { font-size: 0.8125rem; color: rgb(28 36 56 / 0.68); white-space: nowrap; font-variant-numeric: tabular-nums; } .ds-board-desc { display: block; margin-top: 0.15rem; font-size: 0.8125rem; color: rgb(28 36 56 / 0.68); }"
+    },
+    {
+      "name": "状态栏 Statusbar",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "进站画面收束行：通栏 1px 强框线上边线，两端排「在线 1 人 · 访客就是你」×「纯静态小站 · 无需登录 · 欢迎常来」，0.8125rem 次墨。深色版线 rgb(223 230 243 / 0.5)、字 rgb(223 230 243 / 0.72)。",
+      "html": "<div class=\"ds-statusbar\"><span>在线 1 人 · 访客就是你</span><span>纯静态小站 · 无需登录 · 欢迎常来</span></div>",
+      "css": ".ds-statusbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; padding-top: 0.6rem; border-top: 1px solid rgb(28 36 56 / 0.55); font-family: 'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace; font-size: 0.8125rem; color: rgb(28 36 56 / 0.72); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "一座自己的中文 BBS 站",
+    "overview": "主页不是博客首页，而是一座个人中文 BBS 站的进站画面（80 列终端开本）：访客像登录一样进站——顶部系统行报站名与【技术 · 生活】，双线进站牌里是站长与联络方式，「最新张贴」是版面文章，右侧「版面导航」是四个板块的菜单，底部状态栏写着「在线 1 人 · 访客就是你」。它拒绝「问候语 + 卡片网格」的博客模板排布，也拒绝无语法堆砌的终端霓虹装饰（扫描线、闪烁、辉光、多色 ANSI 都不出现）。一切文字排在同一张等宽字模网格上：中文方块字天然等宽，拉丁字母与数字由自托管的 JetBrains Mono（latin 子集）补齐同一网格。区块以 ANSI 框线语法组织（fieldset/legend 嵌线标题：进站牌 3px 双线、一般区块 1px 实线），零圆角、零阴影；层次靠框线粗细（双线 > 强实线 > 实线 > 虚线）与墨阶表达。青色是唯一信号色（交互与状态），琥珀只做 [标记] 第二高亮；「图形」词汇只有 [方括号] 文本标记与 ▸ 光标符。浅色主题是「纸上终端」（冷纸白 #f3f2ec + 蓝黑墨 #1c2438），深色主题是经典 ANSI 蓝底终端（藏青 #101830 + 亮白字 #dfe6f3）——两套各自调版、同等认真，深色不是浅色的滤镜。签名交互是 BBS 光标条：文章行悬停/键盘聚焦时整行被信号色填充（深色 = accent 反白 + 地色字，浅色 = 0.16 透明度青 tint + 墨字），行首浮出 ▸——方向键选文的肌肉记忆。动效只有一条时间线：列表逐行点亮。",
+    "keyCharacteristics": [
+      "进站画面语法：系统行 → 进站牌 → 最新张贴 + 版面导航 → 状态栏；站龄/篇数/最近更新全部为真实数据。",
+      "等宽单声部：'JetBrains Mono Local'（拉丁/数字，自托管 latin 子集）+ 系统 CJK，全站一个字族栈。",
+      "ANSI 框线层级：3px 双线（进站牌）> 1px 强实线（通栏线）> 1px 实线（区块/行分隔）> 1px 虚线（头条分隔）；legend 嵌线为框题。",
+      "零圆角、零阴影；[方括号] 文本标记与 ▸ 光标是仅有的「图形」。",
+      "青色经济：青 = 信号/交互（用途封闭清点），琥珀 = 第二高亮且只用于 [草稿]/[外链] 标记。",
+      "动效一条时间线：列表逐行点亮（0.55s expo-out，+0.06s 递进，prefers-reduced-motion 关闭）。",
+      "界面全中文；日期/篇数/序号一律 tabular-nums。"
+    ],
+    "rules": [
+      { "name": "The 青色经济 Rule", "body": "青 = 信号与交互，用途封闭清点（legend、链接、▸、焦点环、选区、光标条）；琥珀 = 第二高亮且只用于 [标记]。两色都不做分隔线、背景块或大面积装饰；新增任何一处用量必须先退役一处现有用途。", "section": "colors" },
+      { "name": "The 双主题同权 Rule", "body": "深色是经典 ANSI 蓝底的独立调版（ground #101830、accent #52d9cf、淡墨 0.62），浅色（ground #f3f2ec、accent #0a6f68、淡墨 0.68）；每个新颜色必须同时给出两套值，dim/soft 档按主题分别校对比，不做透明度滤镜。", "section": "colors" },
+      { "name": "The 墨阶封底 Rule", "body": "ink-dim 是文字最淡档，不再往下稀释；更弱的层级用 0.8125rem 字号与框线区分，不用更淡的墨。", "section": "colors" },
+      { "name": "The 等宽唯一 Rule", "body": "全站一个字族栈，不引入第二字族，不用衬线/无衬线对比做层级；层级靠字重、字号与墨阶。", "section": "typography" },
+      { "name": "The 轻盈中文化 Rule", "body": "CJK 一律系统字体，不为中文下网络字体；拉丁/数字子集自托管且单文件 ≤22KB（现 400/700 各约 21/22KB），font-display: swap。", "section": "typography" },
+      { "name": "The 排印数字 Rule", "body": "一切日期、篇数、序号（两位补零、自 02 起，头条为隐含的 01）、读时用 tabular-nums；等宽网格里天然对齐。", "section": "typography" },
+      { "name": "The 框线层级 Rule", "body": "需要新区分层级时先考虑换一种线（双线/强实线/实线/虚线），而不是加盒子、加背景或加阴影。", "section": "elevation" },
+      { "name": "The 零圆角零阴影 Rule", "body": "任何新元素 radius 0、无 box-shadow、无渐变；「圆角 + 背景色块 + 投影」的卡片语言是被拒绝的博客模板语法。", "section": "shapes" }
+    ],
+    "dos": [
+      "Do 保持诚实数据骨架：站龄/篇数/最近更新全部由真实内容计算，随记 0 篇标「虚位以待」，状态栏「在线 1 人 · 访客就是你」；不虚构在线人数/访问量等运营数据。",
+      "Do 用 fieldset 框语法组织区块：进站牌 3px double、一般区块 1px solid、legend 嵌线作框题（0.875rem/700/ls 0.1em 青色）。",
+      "Do 守住青色经济：青只做信号/交互（legend、链接、▸、focus、selection、光标条），琥珀只做 [标记] 第二高亮；两色永不成为大面积装饰。",
+      "Do 双主题同步出值：每个新颜色同时给浅/深两套（ground #f3f2ec/#101830，ink #1c2438/#dfe6f3，accent #0a6f68/#52d9cf，accent-2 #8f5a00/#f0b45c）；dim/soft 按主题分别校对比。",
+      "Do 已主题化的状态一并保持：::selection accent/ground 反转、:focus-visible 2px accent、日期与计数 tabular-nums。",
+      "Do 动效保持一条时间线：列表逐行点亮 0.55s expo-out、行延迟 0.05s 起 +0.06s 递进、包在 `prefers-reduced-motion: no-preference` 内且默认可见；缓动统一 cubic-bezier(0.16, 1, 0.3, 1)。",
+      "Do CJK 保持系统字体：拉丁/数字子集自托管（400/700 各约 21/22KB，font-display: swap），不为中文网络字体牺牲轻盈。"
+    ],
+    "donts": [
+      "Don't 引入任何圆角、阴影、渐变或玻璃拟态——「圆角卡片网格」是被拒绝的博客模板语言。",
+      "Don't 引入第二字族或为 CJK 下网络字体；层级靠字重/字号/墨阶，不靠换字体。",
+      "Don't 把青色或琥珀用于分隔线、背景块或大段装饰文字；琥珀不出现在 `.mark` 之外的任何地方。",
+      "Don't 让文字淡过 ink-dim 档；更弱层级用字号与框线区分，不稀释墨色。",
+      "Don't 无语法地堆终端霓虹装饰（扫描线、闪烁、辉光、多色 ANSI）；本世界的终端感来自框线语法与反白，不来自霓虹。"
+    ]
+  }
+}

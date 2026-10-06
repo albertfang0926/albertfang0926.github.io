@@ -1,0 +1,37 @@
+---
+version: 1
+slug: "src-pages-index-astro"
+primary_target: "src/pages/index.astro"
+related_targets: []
+---
+
+# Surface brief — src/pages/index.astro（主页）
+
+## Scope & mode
+
+主页（Read 模式：访客的问题「这个人写什么、值不值得读/订阅」）：改动收敛于 index.astro。2026-10-07 用户反馈「内容和背景分离、不搭配，要求排版覆盖整个页面」，据此扩大主页渲染范围：通过 `body:has(.station)` 作用域让地面铺满主页视口，并把全局 Header/Footer/移动抽屉在主页并入等宽墨色世界——BaseLayout 与组件文件本身不动，站外页面不受影响；BaseLayout/主题机制仍不改动。定位已由用户修正：技术写作为主，生活分享为辅。
+
+## Audience, job, constraints
+
+- 受众：开发者读者与朋友/熟人；工位或深夜打开，快速判断「写什么、更新多勤」，然后进版读文。
+- 任务：认出 Albert 与他的技术领域 → 看到最新文章（展开提要）→ 顺着版面菜单进各栏目。
+- 证明/内容：3 篇真实文章（《为什么焦虑？》2026-10-05 最新；《今天是个好日子》《今天安安出门啦》）；真实数据仅文章数、日期、站龄（自第一篇文章 2026-01-03 起算）、avatar、GitHub、email；随记 0 篇须诚实呈现；不虚构在线人数/访问量等运营数据。
+- 约束（用户锁定）：浅/深双主题同等认真；界面全中文；不花哨、不冷淡、不能像模板或别人的博客；纯静态保持轻盈。
+
+## Chosen direction & memorable moment
+
+「中文 BBS 站」：主页是一座个人 BBS 的进站画面，访客像登录一样进站读文章。memorable moment = BBS 光标条：文章行悬停/键盘聚焦时整行被信号色块填充、行首出现 ▸（方向键选文的肌肉记忆）；「在线 1 人 · 访客就是你」的诚实幽默。
+
+## Direction contract
+
+THESIS: 主页是一座中文 BBS 站的进站画面——Albert 的技术站，文章是版面文章，访客像登录一样进站；它拒绝「问候语+卡片网格」的博客模板排布，也拒绝无语法堆砌的终端霓虹装饰。
+
+OWN-WORLD: 80 列终端开本；一切文字等宽字模（中文方块字天然等宽）；区块以 ANSI 双线框与单线框（fieldset/legend 式标题嵌线）组织，无圆角、无阴影、无卡片阵列；深色=经典蓝底 ANSI（藏青地 #101830、亮白字、青 #52d9cf 信号色、琥珀 #f0b45c 第二高亮），浅色=纸上终端（冷纸白 #f3f2ec、蓝黑墨 #1c2438、同一青加深 #0c7d74 与琥珀加深 #8f5a00）；选中、焦点、光标条共用信号色；朱印/宋体/楷体/纸张全部退场。
+
+STORY: 访客一眼知道这是谁的技术站、写什么、更新多勤——顶部系统行的「文章 N 篇 · 站龄第 N 天 · 最近更新日期」全部为真实数据；最新一篇展开标题与提要可直接读；版面导航交代四个板块与节奏（空版标「虚位以待」）；随时进版、订阅 RSS、写信给站长；底部状态栏「在线 1 人 · 访客就是你」。
+
+FIRST VIEWPORT: 顶部系统行（站名+【技术 · 生活】+右侧统计）横贯；其下双线进站牌（fieldset 双框）：站名大字、站长行（方框头像+一句话+联络行 [GitHub] [RSS 订阅] [写信给我]）、欢迎语「欢迎光临，请随意翻阅；文章不定期更新。」；主区两栏——左「最新张贴」：首条为展开块（大标题+提要+日期/版面/读时+[阅读全文]），其余编号行（序号 标题 日期 [tag] 读时）；右「版面导航」四行（版面名+节奏注记+篇数）。移动端单栏：系统行→进站牌→最新张贴→版面导航。
+
+FORM: 分配方向 = 中文 BBS 站（清单第 7 号；seed key b5d08a4d；用户在第二轮决策页锁定 assigned，PICK「方格演算纸」未选中）。签名交互：BBS 光标条（文章行悬停/聚焦整行信号色块+行首 ▸）；动效一处：列表逐行点亮（expo-out、默认可见、prefers-reduced-motion 关闭）。
+
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
