@@ -15,6 +15,22 @@ html:not(.dark) {
   color-scheme: light;
 }
 
+html {
+  scrollbar-color: #b6bfc9 transparent;
+}
+
+html.dark {
+  scrollbar-color: #333a42 transparent;
+}
+
+::selection {
+  background-color: rgb(13 175 198 / 0.24);
+}
+
+html.dark ::selection {
+  background-color: rgb(56 205 221 / 0.3);
+}
+
 #nprogress {
   pointer-events: none;
 }

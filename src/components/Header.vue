@@ -9,6 +9,8 @@ const navLinks = siteConfig.header.navLinks || []
 
 const socialLinks = computed(() => {
   return siteConfig.socialLinks.filter((link: Record<string, any>) => {
+    if (!link.href)
+      return false
     if (link.header && typeof link.header === 'boolean') {
       return link
     }
@@ -92,8 +94,8 @@ function toggleNavDrawer() {
           {{ link.text }}
         </a>
       </nav>
-      <div sm:hidden h-full flex items-center @click="toggleNavDrawer()">
-        <menu i-ri-menu-2-fill />
+      <div sm:hidden h-full flex items-center>
+        <button type="button" aria-label="打开菜单" i-ri-menu-2-fill cursor-pointer @click="toggleNavDrawer()" />
       </div>
     </div>
     <div class="flex gap-x-6">

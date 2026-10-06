@@ -9,22 +9,29 @@ import {
 } from 'unocss'
 
 export default defineConfig({
+  theme: {
+    fontFamily: {
+      sans: `ui-sans-serif, system-ui, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif`,
+      mono: `ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace`,
+    },
+  },
   shortcuts: [
     {
       'bg-main': 'bg-hex-eef5fc dark:bg-hex-0d1117',
       'text-main': 'text-hex-555555 dark:text-hex-ffffff',
       'text-link': 'text-dark dark:text-white ',
+      'text-muted': 'text-hex-767676 dark:text-hex-9aa2ab',
       'border-main': 'border-truegray-300 dark:border-truegray-600',
     },
     {
-      'text-primary': 'text-hex-0dafc6 dark:text-hex-38cddd',
+      'text-primary': 'text-hex-0d7686 dark:text-hex-38cddd',
       'bg-primary': 'bg-hex-0dafc6',
       'bg-primary-soft': 'bg-hex-0dafc6/10 dark:bg-hex-0dafc6/15',
       'border-primary': 'border-hex-0dafc6',
     },
     {
       'text-title': 'text-link text-4xl font-800',
-      'nav-link': 'text-link opacity-70 hover:opacity-100 transition-opacity duration-200 cursor-pointer',
+      'nav-link': 'text-link opacity-85 hover:opacity-100 transition-opacity duration-200 cursor-pointer',
       'prose-link': 'text-link text-nowrap cursor-pointer border-b-1 !border-opacity-30 hover:!border-opacity-100 border-neutral-500 hover:border-truegray-600 dark:border-neutral-500 hover:dark:border-truegray-400 transition-border-color duration-200 decoration-none',
       'container-link': 'p-2 opacity-60 hover:opacity-100 cursor-pointer hover:bg-truegray-500 !bg-opacity-10 transition-colors transition-opacity duration-200',
     },

@@ -95,7 +95,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
       </div>
 
       <div class="relative mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-lg">
-        <span class="text-sm opacity-50">Find me on</span>
+        <span class="text-sm opacity-70">找到我</span>
         {
           socialLinks.map((link) => (
             <a class="social-link" aria-label={link.text} href={link.href} target="_blank" rel="noopener">
@@ -124,16 +124,16 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
             </span>
             <span class="mt-3 flex items-center gap-2 font-700">
               {section.text}
-              <span class="font-mono text-xs font-400 opacity-55">{section.countLabel}</span>
+              <span class="font-mono text-xs font-400 text-muted">{section.countLabel}</span>
             </span>
-            <span class="mt-0.5 block text-xs opacity-55">{section.desc}</span>
+            <span class="mt-0.5 block text-xs text-muted">{section.desc}</span>
           </a>
         ))
       }
     </div>
   </section>
 
-  <section class="fade-up mt-12 sm:mt-16" style="animation-delay: 0.18s">
+  <section class="fade-up mt-12 sm:mt-16 mb-16" style="animation-delay: 0.18s">
     <div class="mb-5 flex items-end justify-between gap-4">
       <div>
         <p class="font-mono text-xs font-600 uppercase text-primary tracking-[0.3em]">Recent Posts</p>
@@ -165,7 +165,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
                 </div>
                 <div class="min-w-0 flex-1">
                   <div class="flex items-center gap-3">
-                    <time class="font-mono text-xs opacity-55" datetime={new Date(post.data.date).toISOString()}>
+                    <time class="font-mono text-xs text-muted" datetime={new Date(post.data.date).toISOString()}>
                       {post.data.date}
                     </time>
                     {index === 0 && <span class="new-badge">NEW</span>}
@@ -176,7 +176,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
                     {post.data.draft && <i class="i-ri-draft-line ml-1 align-middle text-base" />}
                     {post.data.redirect && <i class="i-ri-external-link-line ml-1 align-middle text-base" />}
                   </h3>
-                  <p class="mt-2 text-sm leading-relaxed opacity-55 line-clamp-2">{post.data.description}</p>
+                  <p class="mt-2 text-sm leading-relaxed text-muted line-clamp-2">{post.data.description}</p>
                   <span class="card-cta mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-primary">
                     阅读全文
                     <i class="i-ri-arrow-right-line" />
@@ -283,7 +283,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
     padding: 0.3rem 0.8rem;
     font-family: 'DM Mono', ui-monospace, monospace;
     font-size: 0.72rem;
-    color: #0c94a8;
+    color: #0d7686;
   }
   @media (min-width: 640px) {
     .live-pill {
@@ -378,7 +378,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
   }
 
   .gradient-text {
-    background-image: linear-gradient(115deg, #0dafc6 30%, #5cd8ea 90%);
+    background-image: linear-gradient(115deg, #0d9aab 30%, #40bfd2 90%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -416,7 +416,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
     padding: 0.6rem 1.3rem;
     border-radius: 9999px;
     border: 1px solid rgb(13 175 198 / 0.4);
-    color: #0c94a8;
+    color: #0d7686;
     font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
@@ -428,7 +428,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
   .btn-ghost:hover {
     border-color: #0dafc6;
     background: rgb(13 175 198 / 0.08);
-    color: #0dafc6;
+    color: #0d7686;
   }
   :global(.dark) .btn-ghost {
     border-color: rgb(13 175 198 / 0.35);
@@ -554,7 +554,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
     transition: color 0.2s ease;
   }
   .post-card:hover .post-title {
-    color: #0dafc6;
+    color: #0d8496;
   }
   :global(.dark) .post-card:hover .post-title {
     color: #38cddd;
@@ -570,6 +570,12 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
   .post-card:hover .card-cta {
     opacity: 1;
     transform: translateX(0);
+  }
+  @media (hover: none) {
+    .card-cta {
+      opacity: 0.7;
+      transform: none;
+    }
   }
 
   .new-badge {
@@ -588,7 +594,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
     border-radius: 9999px;
     border: 1px solid rgb(13 175 198 / 0.3);
     background: rgb(13 175 198 / 0.08);
-    color: #0c94a8;
+    color: #0d7686;
     font-size: 0.72rem;
     white-space: nowrap;
   }
@@ -605,7 +611,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
     gap: 0.5rem;
     border-radius: 1.25rem;
     border: 1.5px dashed rgb(13 175 198 / 0.35);
-    color: #0c94a8;
+    color: #0d7686;
     padding: 1.15rem;
     font-size: 0.9rem;
     font-weight: 600;
@@ -621,6 +627,7 @@ function getPostHref(post: { data: { redirect?: string }; id: string }) {
     border-style: solid;
     border-color: #0dafc6;
     background: rgb(13 175 198 / 0.06);
+    color: #0d7686;
   }
   :global(.dark) .mini-card {
     border-color: rgb(13 175 198 / 0.35);

@@ -42,7 +42,8 @@
   content: counter(list-item, var(--list-counter-style, decimal)) '.';
   position: absolute;
   font-weight: 400;
-  color: #6b7280;
+  color: inherit;
+  opacity: 0.55;
   left: 0;
 }
 .prose ul > li {
@@ -52,7 +53,8 @@
 .prose ul > li::before {
   content: '';
   position: absolute;
-  background-color: #d1d5db;
+  background-color: currentColor;
+  opacity: 0.45;
   border-radius: 50%;
   width: 0.375em;
   height: 0.375em;
@@ -119,7 +121,8 @@ html.dark .prose h4 {
   color: #38cddd;
 }
 .prose figure figcaption {
-  color: #6b7280;
+  color: inherit;
+  opacity: 0.6;
   font-size: 0.875em;
   line-height: 1.4285714;
   margin-top: 0.8571429em;

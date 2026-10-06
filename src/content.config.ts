@@ -28,11 +28,10 @@ const postsSchema = z.object({
   date: z
     .string()
     .or(z.date())
-    .transform((val: string | number | Date) => new Date(val).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    })),
+    .transform((val: string | number | Date) => {
+      const d = val instanceof Date ? val : new Date(val)
+      return d.toISOString().slice(0, 10)
+    }),
   draft: z.boolean().default(false).optional(),
   lang: z.string().default('en-US').optional(),
   tag: z.string().optional().optional(),

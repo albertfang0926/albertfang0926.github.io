@@ -11,6 +11,12 @@ const pathCollections: Record<string, PostKey> = {
   talks: 'talks',
 }
 
+const pathTitles: Record<string, string> = {
+  blogs: '博客',
+  notes: '随记',
+  talks: '分享',
+}
+
 export async function getStaticPaths() {
   const paths = siteConfig.page.blogLinks.map((nav) => {
     const href = nav.href.replace('/blog', '')
@@ -26,19 +32,20 @@ export async function getStaticPaths() {
 const { path } = Astro.params
 
 const posts = await getPosts(undefined, pathCollections[path ?? ''] ?? 'blog')
+const pageTitle = pathTitles[path ?? ''] ?? '博客'
 
 function activeLink(pathname: string) {
   return Astro.url.pathname.replace(/\/+/g, '/').replace(/\/$/, '') === pathname
 }
 ---
 
-<BaseLayout title="Blog" description="List of all the blog posts." pageNav={true} pageOperate={true}>
+<BaseLayout title={pageTitle} description="文章列表">
   <div class="flex flex-col gap-2 sm:flex-row sm:gap-4 flex-wrap mb-8">
     {
       siteConfig.page.blogLinks.map((nav) => (
         <a
           aria-label={nav.text}
-          class={`nav-link text-3xl font-bold ${activeLink(nav.href) ? 'opacity-80' : 'opacity-30 hover:opacity-50'}`}
+          class={`text-3xl font-bold ${activeLink(nav.href) ? 'opacity-100' : 'text-muted hover:opacity-70'}`}
           href={nav.href}
         >
           {nav.text}
