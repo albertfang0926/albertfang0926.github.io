@@ -1,0 +1,79 @@
+---
+/**
+ * 「文章贴」头部：3px double 进站牌同款双线框，框住标题与元数据行。
+ * 文章页 legend「文章」，内容页 legend「页面」。
+ */
+interface Props {
+  legend: string
+  title: string
+  date?: string
+  tag?: string
+  duration?: string
+  draft?: boolean
+  video?: boolean
+  board?: string
+}
+
+const { legend, title, date, tag, duration, draft, video, board } = Astro.props
+
+const readTime = duration?.replace(/min/i, '分钟')
+---
+
+<fieldset class="entry-head">
+  <legend class="entry-legend">{legend}</legend>
+  <h1 class="entry-title">
+    {title}
+    {draft && <span class="mark">[草稿]</span>}
+    {video && <span class="mark">[视频]</span>}
+  </h1>
+  {
+    (date || board || tag || readTime) && (
+      <p class="entry-meta">
+        {date && <time datetime={date}>{date.slice(0, 10)}</time>}
+        {board && <span> · {board}</span>}
+        {tag && <span> · [{tag}]</span>}
+        {readTime && <span> · 读时 {readTime}</span>}
+      </p>
+    )
+  }
+</fieldset>
+
+<style>
+  .entry-head {
+    margin: 0 0 1.4rem;
+    padding: 0.4rem 1.4rem 1.2rem;
+    border: 3px double var(--line-strong);
+  }
+
+  .entry-legend {
+    padding: 0 0.6em;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+
+  .entry-title {
+    margin: 0;
+    padding-top: 0.6rem;
+    font-size: clamp(1.35rem, 3.6vw, 1.8rem);
+    font-weight: 700;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .entry-meta {
+    margin: 0.45rem 0 0;
+    font-size: 0.8125rem;
+    color: var(--ink-dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mark {
+    margin-left: 0.4em;
+    font-size: 0.78em;
+    font-weight: 400;
+    color: var(--accent-2);
+    white-space: nowrap;
+  }
+</style>

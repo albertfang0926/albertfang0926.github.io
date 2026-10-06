@@ -3,40 +3,49 @@ import {
   presetAttributify,
   presetIcons,
   presetUno,
-  presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
 
+/** 世界字族栈：全站等宽单声部（DESIGN.md「等宽唯一」），中文走系统字体。 */
+const monoStack
+  = `'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei', monospace`
+
 export default defineConfig({
   theme: {
     fontFamily: {
-      sans: `ui-sans-serif, system-ui, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif`,
-      mono: `ui-monospace, SFMono-Regular, Menlo, Consolas, 'PingFang SC', 'Microsoft YaHei', monospace`,
+      sans: monoStack,
+      mono: monoStack,
+    },
+    // 颜色全部指向 global.css 的世界令牌（:root / html.dark 各自调版）
+    colors: {
+      'ground': 'var(--ground)',
+      'ink': 'var(--ink)',
+      'ink-soft': 'var(--ink-soft)',
+      'ink-dim': 'var(--ink-dim)',
+      'line': 'var(--line)',
+      'line-strong': 'var(--line-strong)',
+      'accent': 'var(--accent)',
+      'accent-2': 'var(--accent-2)',
     },
   },
   shortcuts: [
     {
-      'bg-main': 'bg-hex-eef5fc dark:bg-hex-0d1117',
-      'text-main': 'text-hex-555555 dark:text-hex-ffffff',
-      'text-link': 'text-dark dark:text-white ',
-      'text-muted': 'text-hex-767676 dark:text-hex-9aa2ab',
-      'border-main': 'border-truegray-300 dark:border-truegray-600',
+      'bg-main': 'bg-ground',
+      'text-main': 'text-ink',
+      'text-link': 'text-ink',
+      'text-muted': 'text-ink-dim',
+      'border-main': 'border-line',
     },
     {
-      'text-primary': 'text-hex-0d7686 dark:text-hex-38cddd',
-      'bg-primary': 'bg-hex-0dafc6',
-      'bg-primary-soft': 'bg-hex-0dafc6/10 dark:bg-hex-0dafc6/15',
-      'border-primary': 'border-hex-0dafc6',
+      'text-primary': 'text-accent',
+      'bg-primary': 'bg-accent',
+      'bg-primary-soft': 'bg-ground',
+      'border-primary': 'border-accent',
     },
     {
-      'text-title': 'text-link text-4xl font-800',
-      'nav-link': 'text-link opacity-85 hover:opacity-100 transition-opacity duration-200 cursor-pointer',
-      'prose-link': 'text-link text-nowrap cursor-pointer border-b-1 !border-opacity-30 hover:!border-opacity-100 border-neutral-500 hover:border-truegray-600 dark:border-neutral-500 hover:dark:border-truegray-400 transition-border-color duration-200 decoration-none',
-      'container-link': 'p-2 opacity-60 hover:opacity-100 cursor-pointer hover:bg-truegray-500 !bg-opacity-10 transition-colors transition-opacity duration-200',
-    },
-    {
-      'hr-line': 'w-14 mx-auto my-8 border-solid border-1px !border-truegray-200 !dark:border-truegray-800',
+      'text-title': 'text-ink text-3xl font-bold',
+      'nav-link': 'text-ink hover:text-accent transition-colors duration-150 cursor-pointer',
     },
   ],
   presets: [
@@ -47,12 +56,6 @@ export default defineConfig({
       prefix: 'i-',
       extraProperties: {
         display: 'inline-block',
-      },
-    }),
-    presetWebFonts({
-      fonts: {
-        sans: 'Inter:400,600,800',
-        mono: 'DM Mono:400,600',
       },
     }),
   ],

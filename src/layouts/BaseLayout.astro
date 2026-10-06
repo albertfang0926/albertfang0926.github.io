@@ -15,15 +15,16 @@ const { ...head } = Astro.props
     <BaseHead {...head} />
     <ClientRouter />
   </head>
-  <body class="bg-main text-main min-h-screen font-sans w-full bg-dot flex flex-col">
+  <body class="min-h-screen w-full flex flex-col">
     <Header client:load />
     <main
-      class="grow max-w-3xl mx-auto sm:pt-36 pt-26 pb-16 px-6 relative flex flex-col"
+      class="grow w-full max-w-[56rem] mx-auto sm:pt-28 pt-24 pb-10 relative flex flex-col"
+      style="padding-inline: var(--gutter)"
       transition:animate={fade({ duration: '0.4s' })}
     >
       <slot />
       <ScrollToTop client:load />
-      <Footer />
     </main>
+    <Footer />
   </body>
 </html>

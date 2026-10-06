@@ -80,11 +80,12 @@ function toggleNavDrawer() {
   <header
     id="header" :class="{ 'header-bg-blur': scroll > 20 }"
     view-transition-name="site-header"
-    class="!fixed bg-transparent z-899 w-screen h-20 px-6 flex justify-between items-center relative"
+    class="!fixed bg-transparent z-899 w-screen h-20 text-sm flex justify-between items-center relative"
+    style="padding-inline: var(--gutter)"
   >
     <div class="flex items-center h-full">
       <a href="/" mr-6 aria-label="Header Logo Image">
-        <img width="32" height="32" :src="siteConfig.header.logo.src" :alt="siteConfig.header.logo.alt" class="rounded-full">
+        <img width="32" height="32" :src="siteConfig.header.logo.src" :alt="siteConfig.header.logo.alt" class="border border-line-strong">
       </a>
       <nav class="sm:flex hidden flex-wrap gap-x-6 position-initial flex-row">
         <a
@@ -129,7 +130,9 @@ function toggleNavDrawer() {
 }
 
 .header-bg-blur {
-  --at-apply: backdrop-blur-sm;
+  /* 滚动后的页头用「系统行」语法：实地 + 1px 强框线，不用毛玻璃 */
+  background: var(--ground);
+  border-bottom: 1px solid var(--line-strong);
 }
 
 .nav-drawer {

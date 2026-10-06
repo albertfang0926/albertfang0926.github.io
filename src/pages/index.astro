@@ -44,97 +44,12 @@ const postMeta = (post: (typeof recentPosts)[number]) =>
 
 <BaseLayout description={siteConfig.description}>
   <style is:global>
-    @font-face {
-      font-family: 'JetBrains Mono Local';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url('/fonts/jetbrains-mono-latin-400.woff2') format('woff2');
-    }
-    @font-face {
-      font-family: 'JetBrains Mono Local';
-      font-style: normal;
-      font-weight: 700;
-      font-display: swap;
-      src: url('/fonts/jetbrains-mono-latin-700.woff2') format('woff2');
-    }
-
-    /* 整页进站：主页地面铺满视口，全局 chrome 落在同一张地面上（仅作用于含 .station 的页面）。
-       背景与墨色用带 .dark 前缀的强选择器，压过模板 .dark 变体工具类的 (0,2,0) 特异性。 */
-    html:not(.dark) body:has(.station),
-    .dark body:has(.station) {
-      --gutter: clamp(1rem, 4vw, 2.5rem);
-      background: var(--ground);
-      color: var(--ink);
-    }
-    html:not(.dark) body:has(.station) {
-      --ground: #f3f2ec;
-      --ink: #1c2438;
-      --ink-soft: rgb(28 36 56 / 0.72);
-      --ink-dim: rgb(28 36 56 / 0.68);
-      --line: rgb(28 36 56 / 0.32);
-      --line-strong: rgb(28 36 56 / 0.55);
-      --accent: #0a6f68;
-      --accent-2: #8f5a00;
-      --cursor: rgb(10 111 104 / 0.16);
-      --cursor-ink: var(--ink);
-    }
-    .dark body:has(.station) {
-      --ground: #101830;
-      --ink: #dfe6f3;
-      --ink-soft: rgb(223 230 243 / 0.72);
-      --ink-dim: rgb(223 230 243 / 0.62);
-      --line: rgb(223 230 243 / 0.26);
-      --line-strong: rgb(223 230 243 / 0.5);
-      --accent: #52d9cf;
-      --accent-2: #f0b45c;
-      --cursor: var(--accent);
-      --cursor-ink: var(--ground);
-    }
-    body:has(.station)::before {
-      content: none;
-    }
+    /* 世界令牌与全局 chrome 已上收到 src/styles/global.css（全站共用）。
+       这里只保留主页特有的一条：整屏进站时 main 交出模板开本，地面铺满视口。 */
     body:has(.station) main {
       max-width: none;
       margin: 0;
       padding: 5.5rem 0 0;
-    }
-    body:has(.station) header,
-    body:has(.station) footer,
-    body:has(.station) .nav-drawer {
-      font-family:
-        'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC',
-        'Microsoft YaHei', monospace;
-    }
-    body:has(.station) header {
-      padding-inline: var(--gutter);
-      color: var(--ink-soft);
-      font-size: 0.875rem;
-    }
-    body:has(.station) header .nav-link {
-      color: var(--ink);
-    }
-    body:has(.station) header img {
-      border-radius: 0;
-      border: 1px solid var(--line-strong);
-    }
-    body:has(.station) .nav-drawer {
-      background: var(--ground);
-      font-size: 0.9375rem;
-    }
-    body:has(.station) footer {
-      max-width: none;
-      padding-inline: var(--gutter);
-      border-top-color: var(--line);
-      color: var(--ink-dim);
-    }
-    body:has(.station) footer .nav-link {
-      color: var(--ink-dim);
-    }
-    html:not(.dark) body:has(.station) ::selection,
-    .dark body:has(.station) ::selection {
-      background: var(--accent);
-      color: var(--ground);
     }
   </style>
   <div class="station">

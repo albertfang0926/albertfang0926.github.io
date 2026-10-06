@@ -40,18 +40,64 @@ function activeLink(pathname: string) {
 ---
 
 <BaseLayout title={pageTitle} description="文章列表">
-  <div class="flex flex-col gap-2 sm:flex-row sm:gap-4 flex-wrap mb-8">
-    {
-      siteConfig.page.blogLinks.map((nav) => (
-        <a
-          aria-label={nav.text}
-          class={`text-3xl font-bold ${activeLink(nav.href) ? 'opacity-100' : 'text-muted hover:opacity-70'}`}
-          href={nav.href}
-        >
-          {nav.text}
-        </a>
-      ))
-    }
-  </div>
-  <ListPosts list={posts} />
+  <fieldset class="board">
+    <legend class="board-legend">{pageTitle}</legend>
+    <nav class="board-tabs" aria-label="版面切换">
+      {
+        siteConfig.page.blogLinks.map((nav) => (
+          <a aria-label={nav.text} class={`board-tab${activeLink(nav.href) ? ' is-active' : ''}`} href={nav.href}>
+            [{nav.text}]
+          </a>
+        ))
+      }
+    </nav>
+    <ListPosts list={posts} />
+  </fieldset>
 </BaseLayout>
+
+<style>
+  .board {
+    width: 100%;
+    margin: 0;
+    padding: 0.2rem 1.2rem 1rem;
+    border: 1px solid var(--line);
+    min-width: 0;
+  }
+
+  .board-legend {
+    padding: 0 0.6em;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+
+  .board-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    padding: 0.55rem 0.5rem 0.7rem 0;
+  }
+
+  .board-tab {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .board-tab:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* 当前版：行首 ▸ + 700 墨色，括号仍是形状 */
+  .board-tab.is-active {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .board-tab.is-active::before {
+    content: '▸ ';
+    color: var(--accent);
+    font-weight: 400;
+  }
+</style>

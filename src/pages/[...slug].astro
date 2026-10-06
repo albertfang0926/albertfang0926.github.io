@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import EntryHead from '@/components/EntryHead.astro'
 import type { CollectionPages } from '@/types'
 
 export async function getStaticPaths() {
@@ -22,15 +23,17 @@ const { Content } = await render(page)
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="prose">
-    <h1>{title}</h1>
-    {
-      image && (
-        <p>
-          <img width="640" height="360" src={image.src} alt={image.alt || ''} />
-        </p>
-      )
-    }
-    <Content />
+  <article class="entry">
+    <EntryHead legend="页面" title={title} />
+    <div class="prose">
+      {
+        image && (
+          <p>
+            <img width="640" height="360" src={image.src} alt={image.alt || ''} />
+          </p>
+        )
+      }
+      <Content />
+    </div>
   </article>
 </BaseLayout>

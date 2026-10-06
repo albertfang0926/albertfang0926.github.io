@@ -1,9 +1,11 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import EntryHead from '@/components/EntryHead.astro';
 
 <BaseLayout title="页面未找到" description="你访问的页面不存在。">
-  <article class="prose">
-    <h1>404 :( </h1>
-    <h2>页面不存在</h2>
-    <p>你访问的页面不存在，可能已被移动或删除。从顶部导航回到博客吧。</p>
+  <article class="entry">
+    <EntryHead legend="页面" title="404 · 页面不存在" />
+    <div class="prose">
+      <p>你访问的页面不存在，可能已被移动或删除。从顶部导航回到博客吧。</p>
+    </div>
   </article>
 </BaseLayout>

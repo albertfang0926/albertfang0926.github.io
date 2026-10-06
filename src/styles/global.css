@@ -1,13 +1,60 @@
-html.dark .astro-code,
-html.dark .astro-code span {
-  color: var(--shiki-dark) !important;
-  background-color: #161b22 !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
+/* ─── 中文 BBS 站 · 全站世界层 ─────────────────────────────
+   令牌与 DESIGN.md 一一对应：纸上终端（浅）/ ANSI 蓝底（深）各自调版。
+   主页与站内路由页共用同一张地面、同一套墨阶与青色信号。 */
+
+@font-face {
+  font-family: 'JetBrains Mono Local';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono Local';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-700.woff2') format('woff2');
+}
+
+:root {
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --ground: #f3f2ec;
+  --ink: #1c2438;
+  --ink-soft: rgb(28 36 56 / 0.72);
+  --ink-dim: rgb(28 36 56 / 0.68);
+  --line: rgb(28 36 56 / 0.32);
+  --line-strong: rgb(28 36 56 / 0.55);
+  --accent: #0a6f68;
+  --accent-2: #8f5a00;
+  --cursor: rgb(10 111 104 / 0.16);
+  --cursor-ink: var(--ink);
+  --code-ground: #eae8df;
+  --code-inline: rgb(28 36 56 / 0.07);
 }
 
 html.dark {
+  --ground: #101830;
+  --ink: #dfe6f3;
+  --ink-soft: rgb(223 230 243 / 0.72);
+  --ink-dim: rgb(223 230 243 / 0.62);
+  --line: rgb(223 230 243 / 0.26);
+  --line-strong: rgb(223 230 243 / 0.5);
+  --accent: #52d9cf;
+  --accent-2: #f0b45c;
+  --cursor: var(--accent);
+  --cursor-ink: var(--ground);
+  --code-ground: #0b1428;
+  --code-inline: rgb(223 230 243 / 0.12);
+}
+
+html {
+  scrollbar-color: rgb(28 36 56 / 0.4) transparent;
+}
+
+html.dark {
+  scrollbar-color: rgb(223 230 243 / 0.28) transparent;
   color-scheme: dark;
 }
 
@@ -15,20 +62,24 @@ html:not(.dark) {
   color-scheme: light;
 }
 
-html {
-  scrollbar-color: #b6bfc9 transparent;
-}
-
-html.dark {
-  scrollbar-color: #333a42 transparent;
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family:
+    'JetBrains Mono Local', ui-monospace, Consolas, 'Cascadia Mono', 'Courier New', 'PingFang SC', 'Microsoft YaHei',
+    monospace;
+  font-size: 0.9375rem;
+  line-height: 1.75;
 }
 
 ::selection {
-  background-color: rgb(13 175 198 / 0.24);
+  background: var(--accent);
+  color: var(--ground);
 }
 
-html.dark ::selection {
-  background-color: rgb(56 205 221 / 0.3);
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 #nprogress {
@@ -36,7 +87,7 @@ html.dark ::selection {
 }
 
 #nprogress .bar {
-  background: #888;
+  background: var(--accent);
   opacity: 0.75;
   position: fixed;
   z-index: 999;
@@ -46,16 +97,24 @@ html.dark ::selection {
   height: 2px;
 }
 
-img {
-  --at-apply: rd-1.5;
+/* 代码块：终端里嵌一块有框线的屏幕，零圆角 */
+.astro-code {
+  background-color: var(--code-ground) !important;
+  border: 1px solid var(--line);
+  border-radius: 0;
+}
+
+html.dark .astro-code,
+html.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--code-ground) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
 article {
   --at-apply: sm: min-h-38 min-h-28;
-}
-
-.prose-link i {
-  --at-apply: text-sm mr-1;
 }
 
 ::view-transition-old(root),
