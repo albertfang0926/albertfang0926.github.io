@@ -1,111 +1,71 @@
-# Vitesse theme for Astro
+# AlbertFang's Blog
 
-A minimal, SEO-friendly portfolio and blog theme for Astro, supports Vue and UnoCSS.
+我的个人博客，以技术写作为主（技术长文、工程笔记、踩坑记录），同时记录生活与思考。基于 [astro-theme-vitesse](https://github.com/kieranwv/astro-theme-vitesse) 模板构建。
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0624323a-339f-48da-8b28-03037d664c40/deploy-status)](https://app.netlify.com/sites/astro-theme-vitesse/deploys)
+- 线上地址：<https://albertfang0926.github.io>
+- RSS：<https://albertfang0926.github.io/rss.xml>
 
-## Preview
+## 技术栈
 
-![Preview Image](./public/preview.jpg)
+- [Astro](https://astro.build/) + [Vue 3](https://vuejs.org/) + [UnoCSS](https://unocss.dev/)
+- MDX 支持（Markdown 中可使用组件）
+- 纯静态输出，无后端；浅色 / 深色主题、RSS、sitemap、文章目录
 
-## Features
+## 目录结构
 
-- 100 / 100 Lighthouse performance.
-- Responsive.
-- SEO-friendly.
-- Light / Dark Theme.
-- Markdown support.
-- <a target="_blank" href="https://mdxjs.com/">MDX</a> (components in your markdown) support.
-- <a target="_blank" href="https://vuejs.org/">Vue</a> SFC component support.
-- Auto generated sitemap and RSS Feed <a target="_blank" href="https://vueuse.org/">VueUse</a> & <a target="_blank" href="https://lodash.com/">Lodash</a> support.
-- Use the <a target="_blank" href="https://unocss.dev/">UnoCSS</a> for style, it's fast.
+```txt
+src/
+├── content/
+│   ├── blog/
+│   │   ├── blogs/    # 博客：技术成文
+│   │   ├── notes/    # 随记：短碎片
+│   │   └── talks/    # 分享：对话感内容
+│   └── pages/        # 独立页面（如 Markdown 样式示例）
+├── components/       # Vue / Astro 组件
+├── layouts/          # 页面布局
+├── pages/            # 路由页面（含 rss.xml、robots.txt）
+├── styles/           # 全局样式与正文排版
+├── site-config.ts    # 站点信息、导航、社交链接
+└── data/             # 项目页数据
+```
 
-## Lighthouse Performance
+## 本地开发
 
-![Lighthouse Performance Image](./public/lighthouse.jpg)
-
-## Quick Start
-
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/kieranwv/astro-theme-vitesse)
-
-Click this button, it will create a new repo for you that looks exactly like this one, and sets that repo up immediately for deployment on Netlify.
-
-If you  just want to develop locally, you can [create a repo](https://github.com/kieranwv/astro-theme-vitesse/generate) from this template on GitHub.
-
-## Usage
-
-First, install the dependencies.
+需要 Node.js 18.17 及以上版本。
 
 ```bash
+# 安装依赖
 npm install
-```
 
-Just run and visit http://localhost:1977.
-
-```bash
+# 启动开发服务器，访问 http://localhost:1977
 npm run dev
-```
 
-> Node.js version 18 or higher is required for this project.
-
-To build the App, you can run:
-
-```bash
+# 构建到 dist/
 npm run build
-```
 
-You will then see the `dist` folder generated for publishing, which you can preview locally with the following command.
-
-```bash
+# 本地预览构建产物
 npm run preview
 ```
 
-## Use pnpm / yarn
+## 写一篇文章
 
-If you want to use pnpm or yarn as a package management tool, please refer to the following steps.
+在 `src/content/blog/<栏目>/` 下新建 Markdown 文件（栏目对应上表中的 blogs / notes / talks），写入 frontmatter 即可：
 
-> If `preinstall` exists in `scripts`, remove it first.
+```md
+---
+title: 文章标题
+description: 一句话简介
+date: 2026-10-07
+tag: 可选标签
+---
 
-### pnpm
-
-Replace `"pre-commit": "npx lint-staged"` in package.json with `"pre-commit": "pnpm lint-staged"`.
-
-And replace `"*": "npm run lint:fix"` with `"*": "pnpm lint:fix"`.
-
-Like this:
-
-```json
-{
-  // ...
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
-  "lint-staged": {
-    "*": "pnpm lint:fix"
-  }
-}
+正文……
 ```
 
-### yarn
+支持的可选字段还包括 `image`（列表配图）、`draft`（草稿）、`duration` 等，见 `src/content.config.ts` 中的 schema。
 
-Replace `"pre-commit": "npx lint-staged"` in package.json with `"pre-commit": "yarn lint-staged"`.
+保存并推送到 `main` 分支后，GitHub Actions 会自动构建并部署到 GitHub Pages，无需手动操作。
 
-And replace `"*": "npm run lint:fix"` with `"*": "yarn lint:fix"`.
+## 致谢与许可
 
-Like this:
-
-```json
-{
-  // ...
-  "simple-git-hooks": {
-    "pre-commit": "yarn lint-staged"
-  },
-  "lint-staged": {
-    "*": "yarn lint:fix"
-  }
-}
-```
-
-## License
-
-[MIT License](./LICENSE) © 2024 [Kieran Wang](https://github.com/kieranwv/)
+基于 [Kieran Wang](https://github.com/kieranwv/) 的 [astro-theme-vitesse](https://github.com/kieranwv/astro-theme-vitesse) 模板，遵循 [MIT License](./LICENSE)。
